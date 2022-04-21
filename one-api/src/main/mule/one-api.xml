@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="026d2939-a101-4ed8-882b-a9337667caf5" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6a543daa-7dde-440a-a8f2-0435cc718dc9" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="one-apiFlow" doc:id="27fbf806-cd81-455d-a315-8807986f4f18" >
+		<http:listener doc:name="Listener" doc:id="63ae02f6-43a6-4dba-b374-37d545211981" config-ref="HTTP_Listener_config" path="/first"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f02600d1-57a8-4679-afbf-e491cfc228c5" message="#[payload]"/>
+		<set-payload value="prasantgh kumar and anusha" doc:name="Set Payload" doc:id="dd9445e8-be33-4b8e-994b-3fade8072b47" />
+		<file:write doc:name="Write" doc:id="c49c3921-d29d-4773-95a6-ff3b19ae3f1c" config-ref="File_Config" path="C:\Users\Prasanth Kumar\OneDrive\Desktop\mulepractice\xyz.txt"/>
+	</flow>
+</mule>
